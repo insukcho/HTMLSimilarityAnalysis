@@ -1,8 +1,8 @@
 package com.chris.parser;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -49,30 +49,20 @@ public class HTMLParser {
 	 */
 	public static void setAllWordsInBody(Article article, Document doc) {
 		int wordCount = 0;
-		Map<String, Integer> wordNCount = new HashMap<>();
+		Set<String> words = new HashSet<>();
 
 		Elements elements = doc.getElementsByTag(BODY_TAG_NAME);
 		for (Element e : elements) {
 			if (e.hasText()) {
 				for (String word : e.text().split(WORD_SEPERATOR)) {
 					// remove all character which is not alphabet
-					word = word.replaceAll(EXCEPT_ALPHABET, "");
-					
-					if (wordNCount.containsKey(word)) {
-						// accumulate the count
-						wordNCount.put(word, wordNCount.get(word) + 1);
-					} else {
-						// initial input
-						wordNCount.put(word, 1);
-					}
-					
-					wordCount++;
+					words.add(word.replaceAll(EXCEPT_ALPHABET, ""));
 				}
 			}
 		}
 		
 		article.setWordsCount(wordCount);
-		article.setWordNCount(wordNCount);
+		article.setWords(words);
 	}
 
 }

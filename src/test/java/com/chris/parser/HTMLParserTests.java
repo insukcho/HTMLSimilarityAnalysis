@@ -1,7 +1,7 @@
 package com.chris.parser;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,18 +20,16 @@ public class HTMLParserTests {
 	@Test
 	public void testGetAllWordsInBody() {
 		String html = "<html><head><title>First parse</title></head>"
-				+ "<body><p>Parsed HTML into a doc. HTML is markup language. </p></body></html>";
+				+ "<body><p>Parsed HTML into a doc. HTML is a markup language. </p></body></html>";
 
 		Article article = new Article();
 		HTMLParser.setAllWordsInBody(article, Jsoup.parse(html));
-		Map<String, Integer> wordNCount = article.getWordNCount();
+		Set<String> words = article.getWords();
 		
-		Assert.assertTrue(wordNCount.containsKey("Parsed"));
-		Assert.assertEquals(new Integer(1), wordNCount.get("Parsed"));
-		Assert.assertTrue(wordNCount.containsKey("HTML"));
-		Assert.assertEquals(new Integer(2), wordNCount.get("HTML"));
-		Assert.assertTrue(wordNCount.containsKey("doc"));
-		Assert.assertEquals(new Integer(1), wordNCount.get("doc"));
+		Assert.assertTrue(words.contains("Parsed"));
+		Assert.assertTrue(words.contains("HTML"));
+		Assert.assertTrue(words.contains("doc"));
+		Assert.assertEquals(8, words.size());
 	}
 
 }

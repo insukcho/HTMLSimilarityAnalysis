@@ -1,16 +1,17 @@
 package com.chris.model;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Article {
 	private long id;
 	private String topic;
 	private String url;
 	private boolean validity;
-	private Map<String, Integer> words;
+	private Set<String> words;
 	private int wordsCount;
 	private long similarId;
-	private int similearityScore;
+	private float similearityScore;
 	private long createTime;
 	private long processedTime;
 	private long duration;
@@ -47,11 +48,11 @@ public class Article {
 		this.validity = validity;
 	}
 
-	public Map<String, Integer> getWordNCount() {
+	public Set<String> getWords() {
 		return words;
 	}
 
-	public void setWordNCount(Map<String, Integer> words) {
+	public void setWords(Set<String> words) {
 		this.words = words;
 	}
 
@@ -71,11 +72,11 @@ public class Article {
 		this.similarId = similarId;
 	}
 
-	public int getSimilearityScore() {
+	public float getSimilearityScore() {
 		return similearityScore;
 	}
 
-	public void setSimilearityScore(int similearityScore) {
+	public void setSimilearityScore(float similearityScore) {
 		this.similearityScore = similearityScore;
 	}
 
