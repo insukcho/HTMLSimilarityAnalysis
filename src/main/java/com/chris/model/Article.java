@@ -2,6 +2,10 @@ package com.chris.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 public class Article {
 	private long id;
 	private String topic;
@@ -112,4 +116,16 @@ public class Article {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		String json = null;
+		try {
+			json = ow.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		return json;
+	}
 }

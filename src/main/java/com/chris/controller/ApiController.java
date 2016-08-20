@@ -15,4 +15,9 @@ public class ApiController {
 		ArticleQueue.getInstance().getRequestQueue().add(new Article(System.currentTimeMillis(), topic));
 		return "Create and enqueu Article sucessfully!";
 	}
+	
+	@RequestMapping("/request/articles")
+	public String getRequestArticles() {
+		return ArticleQueue.getInstance().getRequestQueue().toString();
+	}
 }
