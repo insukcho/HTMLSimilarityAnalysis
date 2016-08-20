@@ -8,6 +8,8 @@ import org.jsoup.nodes.Document;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.chris.model.Article;
+
 public class HTMLParserTests {
 	@Test
 	public void testHtmlParser() throws IOException {
@@ -20,7 +22,10 @@ public class HTMLParserTests {
 		String html = "<html><head><title>First parse</title></head>"
 				+ "<body><p>Parsed HTML into a doc. HTML is markup language. </p></body></html>";
 
-		Map<String, Integer> wordNCount = HTMLParser.getAllWordsInBody(Jsoup.parse(html));
+		Article article = new Article();
+		HTMLParser.setAllWordsInBody(article, Jsoup.parse(html));
+		Map<String, Integer> wordNCount = article.getWordNCount();
+		
 		Assert.assertTrue(wordNCount.containsKey("Parsed"));
 		Assert.assertEquals(new Integer(1), wordNCount.get("Parsed"));
 		Assert.assertTrue(wordNCount.containsKey("HTML"));

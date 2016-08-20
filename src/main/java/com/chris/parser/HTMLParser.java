@@ -9,6 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.chris.model.Article;
+
 /**
  * For HTML parsing and generate words data for analysis.
  * 
@@ -45,7 +47,8 @@ public class HTMLParser {
 	 * @param doc
 	 * @return map with word and each count
 	 */
-	public static Map<String, Integer> getAllWordsInBody(Document doc) {
+	public static void setAllWordsInBody(Article article, Document doc) {
+		int wordCount = 0;
 		Map<String, Integer> wordNCount = new HashMap<>();
 
 		Elements elements = doc.getElementsByTag(BODY_TAG_NAME);
@@ -62,11 +65,14 @@ public class HTMLParser {
 						// initial input
 						wordNCount.put(word, 1);
 					}
+					
+					wordCount++;
 				}
 			}
 		}
-
-		return wordNCount;
+		
+		article.setWordsCount(wordCount);
+		article.setWordNCount(wordNCount);
 	}
 
 }
