@@ -22,7 +22,7 @@ public class HTMLParserTests {
 		String html = "<html><head><title>First parse</title></head>"
 				+ "<body><p>Parsed HTML into a doc. HTML is a markup language. </p></body></html>";
 
-		Article article = new Article();
+		Article article = new Article(1);
 		HTMLParser.setAllWordsInBody(article, Jsoup.parse(html));
 		Set<String> words = article.getWords();
 		

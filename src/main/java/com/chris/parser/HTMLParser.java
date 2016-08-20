@@ -40,15 +40,13 @@ public class HTMLParser {
 
 	/**
 	 * Get all text in 'body' tags and split by {@link #WORD_SEPERATOR}. Remain
-	 * only alphabet in the word using regex. Finally, generate map, key is the
-	 * word and value is the count of word. This is important for analysis
-	 * efficiently.
+	 * only alphabet in the word using regex. Finally, generate hashset for unique
+	 * words.
 	 * 
 	 * @param doc
 	 * @return map with word and each count
 	 */
 	public static void setAllWordsInBody(Article article, Document doc) {
-		int wordCount = 0;
 		Set<String> words = new HashSet<>();
 
 		Elements elements = doc.getElementsByTag(BODY_TAG_NAME);
@@ -60,8 +58,7 @@ public class HTMLParser {
 				}
 			}
 		}
-		
-		article.setWordsCount(wordCount);
+
 		article.setWords(words);
 	}
 

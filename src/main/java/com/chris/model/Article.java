@@ -1,6 +1,5 @@
 package com.chris.model;
 
-import java.util.Map;
 import java.util.Set;
 
 public class Article {
@@ -9,21 +8,22 @@ public class Article {
 	private String url;
 	private boolean validity;
 	private Set<String> words;
-	private int wordsCount;
 	private long similarId;
-	private float similearityScore;
+	private float similarityScore;
 	private long createTime;
 	private long processedTime;
 	private long duration;
+	
+	private Article() {} // prevent create this object without id
+	
+	public Article(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;
 	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
 	public String getTopic() {
 		return topic;
 	}
@@ -56,14 +56,6 @@ public class Article {
 		this.words = words;
 	}
 
-	public int getWordsCount() {
-		return wordsCount;
-	}
-
-	public void setWordsCount(int wordsCount) {
-		this.wordsCount = wordsCount;
-	}
-
 	public long getSimilarId() {
 		return similarId;
 	}
@@ -72,12 +64,12 @@ public class Article {
 		this.similarId = similarId;
 	}
 
-	public float getSimilearityScore() {
-		return similearityScore;
+	public float getSimilarityScore() {
+		return similarityScore;
 	}
 
-	public void setSimilearityScore(float similearityScore) {
-		this.similearityScore = similearityScore;
+	public void setSimilarityScore(float similarityScore) {
+		this.similarityScore = similarityScore;
 	}
 
 	public long getCreateTime() {
