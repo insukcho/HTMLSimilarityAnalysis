@@ -14,10 +14,12 @@ public class Article {
 	private long processedTime;
 	private long duration;
 	
-	private Article() {} // prevent create this object without id
+	private Article() {} // prevent create this object without id and topic
 	
-	public Article(long id) {
+	public Article(long id, String topic) {
 		this.id = id;
+		this.topic = topic;
+		this.url = topic;
 	}
 
 	public long getId() {
@@ -28,16 +30,8 @@ public class Article {
 		return topic;
 	}
 
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
 	public String getUrl() {
 		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public boolean isValidity() {
