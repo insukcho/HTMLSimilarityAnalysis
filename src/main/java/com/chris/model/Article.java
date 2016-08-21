@@ -12,11 +12,11 @@ public class Article {
 	private String url;
 	private boolean validity;
 	private Set<String> words;
-	private long similarId;
-	private float similarityScore;
-	private long createTime;
-	private long processedTime;
-	private long duration;
+	private long similarId = -1;
+	private float similarityScore = -1;
+	private long createTime = -1;
+	private long processedTime = -1;
+	private long durationMS = -1;
 	
 	private Article() {} // prevent create this object without id and topic
 	
@@ -87,12 +87,12 @@ public class Article {
 		this.processedTime = processedTime;
 	}
 
-	public long getDuration() {
-		return duration;
+	public long getDurationMS() {
+		return durationMS;
 	}
 
-	public void setDuration(long duration) {
-		this.duration = duration;
+	public void setDurationMS(long durationMS) {
+		this.durationMS = durationMS;
 	}
 
 	@Override
