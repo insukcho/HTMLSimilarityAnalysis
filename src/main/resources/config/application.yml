@@ -2,3 +2,4 @@ spring:
   redis:
     host: ec2-54-247-91-92.eu-west-1.compute.amazonaws.com
     port: 11689
+    password: p7559oet2errnm8jhiqp224rsh0
