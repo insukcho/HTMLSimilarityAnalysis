@@ -14,11 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.chris.model.Article;
+import com.chris.repository.ArticleRepository;
+import com.chris.repository.FakeArticleRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -27,10 +27,11 @@ public class ApiControllerTest {
 	private MockMvc subject;
 
 	BlockingQueue<Article> requestQueue = new LinkedBlockingQueue<Article>();
+	ArticleRepository articleRepository = new FakeArticleRepository();
 
 	@Before
 	public void setUp() throws Exception {
-		subject = MockMvcBuilders.standaloneSetup(new ApiController(requestQueue)).build();
+		subject = MockMvcBuilders.standaloneSetup(new ApiController(requestQueue, articleRepository)).build();
 	}
 
 	@Test
