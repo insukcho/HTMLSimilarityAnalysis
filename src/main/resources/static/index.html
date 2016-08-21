@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>HTML Similarity Analysis</title>
+
+<link type='text/css' rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.4.1/jsgrid.min.css' />
+<link type='text/css' rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.4.1/jsgrid-theme.min.css' />
+ 
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.4.1/jsgrid.min.js'></script>
+
+</head>
+<body>
+    <h1>Welcome HTML Similarity Analysis System!</h1>
+    <table id='jsGrid'></div>
+    <script>
+    $.getJSON('/articles', function (response) {
+        $('#jsGrid').jsGrid({
+            width: '80%',
+            height: '400px',
+
+            sorting: true,
+            paging: true,
+     
+            data: response,
+
+            fields: [
+                { name: 'id', type: 'number', width: 50 },
+                { name: 'url', type: 'text', width: 100 },
+                { name: 'validity', type: 'text', width: 10 },
+                { name: 'similarId', type: 'number', width: 50 },
+                { name: 'similarityScore', type: 'text', width: 20},
+                { name: 'durationMS', type: 'number', width: 20}
+            ]
+
+        });
+    });
+    </script>
+</body>
+</html>
