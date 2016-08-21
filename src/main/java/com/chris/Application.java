@@ -1,5 +1,6 @@
 package com.chris;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.slf4j.Logger;
@@ -29,7 +30,12 @@ public class Application {
     }
     
     @Bean
-    ApiController apiController() {
-    	return new ApiController(new LinkedBlockingQueue<Article>());
+    BlockingQueue<Article> requestQueue() {
+    	return new LinkedBlockingQueue<Article>();
+    }
+    
+    @Bean
+    ApiController apiController(BlockingQueue<Article> requestQueue) {
+    	return new ApiController(requestQueue);
     }
 }

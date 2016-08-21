@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -19,16 +18,14 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.chris.Application;
 import com.chris.model.Article;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = Application.class)
 public class ApiControllerTest {
 
 	private MockMvc subject;
-	
+
 	BlockingQueue<Article> requestQueue = new LinkedBlockingQueue<Article>();
 
 	@Before
@@ -38,10 +35,7 @@ public class ApiControllerTest {
 
 	@Test
 	public void testCreateNEnqueueArticle() throws Exception {
-		MockHttpServletRequestBuilder accept = get("/?topic=wow.com").accept(MediaType.TEXT_HTML);
-		ResultActions perform = subject.perform(accept);
-		ResultActions andExpect = perform.andExpect(status().isOk());
-		andExpect
+		subject.perform(get("/?topic=wow.com").accept(MediaType.TEXT_HTML)).andExpect(status().isOk())
 				.andDo((result) -> {
 					Assert.assertEquals("Create and enqueu Article sucessfully!",
 							result.getResponse().getContentAsString());
@@ -53,7 +47,7 @@ public class ApiControllerTest {
 							result.getResponse().getContentAsString());
 				});
 		Assert.assertEquals(2, requestQueue.size());
-		
+
 	}
 
 	@Test
@@ -68,4 +62,3 @@ public class ApiControllerTest {
 				});
 	}
 }
-
