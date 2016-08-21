@@ -1,5 +1,7 @@
 package com.chris;
 
+import java.util.concurrent.LinkedBlockingQueue;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -7,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import com.chris.controller.ApiController;
+import com.chris.model.Article;
 import com.chris.repository.ArticleRepository;
 import com.chris.repository.RedisArticleRepository;
 
@@ -22,5 +26,10 @@ public class Application {
     @Bean
     ArticleRepository articleRepository(StringRedisTemplate redisTemplate) {
         return new RedisArticleRepository(redisTemplate);
+    }
+    
+    @Bean
+    ApiController apiController() {
+    	return new ApiController(new LinkedBlockingQueue<Article>());
     }
 }

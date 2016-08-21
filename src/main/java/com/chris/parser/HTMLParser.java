@@ -1,6 +1,7 @@
 package com.chris.parser;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class HTMLParser {
 	 * @return Jsoup document
 	 * @throws IOException
 	 */
-	public static Document htmlParsing(String url) throws IOException {
+	public static Document htmlParsing(String url) throws UnknownHostException, IOException {
 		return Jsoup.connect(url).get();
 	}
 
