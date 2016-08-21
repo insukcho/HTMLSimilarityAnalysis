@@ -61,7 +61,7 @@ public class Consumer implements Runnable {
 
 		// calculate duration for ETA
 		article.setProcessedTime(System.nanoTime());
-		article.setDurationMS(TimeUnit.NANOSECONDS.toMillis(article.getProcessedTime() - article.getCreateTime()));
+		article.setEtaMS(TimeUnit.NANOSECONDS.toMillis(article.getProcessedTime() - article.getCreateTime()));
 
 		// persist article
 		articleRepository.save(article);

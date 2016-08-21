@@ -16,7 +16,7 @@ public class Article {
 	private float similarityScore = -1;
 	private long createTime = -1;
 	private long processedTime = -1;
-	private long durationMS = -1;
+	private long etaMS = -1;
 	
 	private Article() {} // prevent create this object without id and topic
 	
@@ -87,12 +87,12 @@ public class Article {
 		this.processedTime = processedTime;
 	}
 
-	public long getDurationMS() {
-		return durationMS;
+	public long getEtaMS() {
+		return etaMS;
 	}
 
-	public void setDurationMS(long durationMS) {
-		this.durationMS = durationMS;
+	public void setEtaMS(long durationMS) {
+		this.etaMS = durationMS;
 	}
 
 	@Override
