@@ -35,7 +35,7 @@ public class Application {
     }
     
     @Bean
-    ApiController apiController(BlockingQueue<Article> requestQueue) {
-    	return new ApiController(requestQueue);
+    ApiController apiController(BlockingQueue<Article> requestQueue, ArticleRepository articleRepository) {
+    	return new ApiController(requestQueue, articleRepository);
     }
 }
