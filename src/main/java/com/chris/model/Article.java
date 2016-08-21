@@ -20,10 +20,11 @@ public class Article {
 	
 	private Article() {} // prevent create this object without id and topic
 	
-	public Article(long id, String topic) {
+	public Article(long id, String topic, long createTime) {
 		this.id = id;
 		this.topic = topic;
 		this.url = topic;
+		this.createTime = createTime;
 	}
 
 	public long getId() {

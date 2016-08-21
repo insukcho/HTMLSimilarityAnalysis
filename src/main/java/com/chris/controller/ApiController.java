@@ -9,13 +9,14 @@ import com.chris.queue.ArticleQueue;
 
 @RestController
 public class ApiController {
-	
+
 	@RequestMapping("/")
-	public String createNEnqueueArticle(@RequestParam("topic") String topic) {
-		ArticleQueue.getInstance().getRequestQueue().add(new Article(System.currentTimeMillis(), topic));
+	public String produceArticle(@RequestParam("topic") String topic) throws InterruptedException {
+		ArticleQueue.getInstance().getRequestQueue()
+				.put(new Article(System.currentTimeMillis(), topic, System.nanoTime()));
 		return "Create and enqueu Article sucessfully!";
 	}
-	
+
 	@RequestMapping("/request/articles")
 	public String getRequestArticles() {
 		return ArticleQueue.getInstance().getRequestQueue().toString();

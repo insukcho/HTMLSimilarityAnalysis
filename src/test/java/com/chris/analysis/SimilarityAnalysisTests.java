@@ -16,9 +16,9 @@ public class SimilarityAnalysisTests {
 		mock.add("I");
 		mock.add("am");
 		mock.add("programmer");
-		Article newbie = new Article(1, "");
+		Article newbie = new Article(1, "", 1);
 		newbie.setWords(mock);
-		Article exist = new Article(2, "");
+		Article exist = new Article(2, "", 2);
 		exist.setWords(mock);
 		
 		SimilarityAnalysis.calculateSimilarity(newbie, exist);
@@ -35,7 +35,7 @@ public class SimilarityAnalysisTests {
 		newMock.add("not");
 		newMock.add("programmer");
 		
-		Article secnodNewbie = new Article(3, "");
+		Article secnodNewbie = new Article(3, "", 3);
 		secnodNewbie.setWords(newMock);
 		
 		SimilarityAnalysis.calculateSimilarity(newbie, secnodNewbie);
