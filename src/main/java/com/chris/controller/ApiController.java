@@ -20,6 +20,8 @@ public class ApiController {
 	public ApiController(BlockingQueue<Article> requestQueue, ArticleRepository articleRepository) {
 		this.requestQueue = requestQueue;
 		this.articleRepository = articleRepository;
+		
+		// start consuming request queue, for 
 		new Thread(new Consumer(requestQueue, articleRepository)).start();
 	}
 
