@@ -7,10 +7,10 @@ import com.chris.model.Article;
 
 public class ArticleQueue {
 
-	private static ArticleQueue instance = new ArticleQueue();
+	private static final ArticleQueue instance = new ArticleQueue();
 
-	private static BlockingQueue<Article> requestQueue = new LinkedBlockingQueue<Article>();
-	private static BlockingQueue<Article> processedQueue = new LinkedBlockingQueue<Article>();
+	private final BlockingQueue<Article> requestQueue = new LinkedBlockingQueue<Article>();
+	private final BlockingQueue<Article> processedQueue = new LinkedBlockingQueue<Article>();
 
 	private ArticleQueue() {} // for singleton
 
