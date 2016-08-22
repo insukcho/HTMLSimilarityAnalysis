@@ -12,6 +12,29 @@ import com.chris.model.Article;
 import com.chris.parser.HTMLParser;
 import com.chris.repository.ArticleRepository;
 
+/**
+ * This consumer is Runnable, so it works as a Thread. Consumer consume Queue's
+ * article. Consumer keep looking queue and if queue is empty, just wait not
+ * using any resources. After new article is enqueued, take right away and do
+ * processing.
+ * 
+ * Processing step is like below.
+ * 
+ * <pre>
+ * 1) Try to get document after parsing HTML page using Article's URL.
+ * 2) If it is invalid URL, set validity is false.
+ * 3) If URL is valid, get all words from body tag using document.
+ * 4) Get all articles in store and do similarity analysis for each article.
+ * 5) After finish processing, mark the end time, 
+ *    and calculate and mark whole elapse time from creation to the end of processing.
+ * 6) Persist this article in store.
+ * </pre>
+ * 
+ * If there are lots of traffic, we can use Thread pool for handling it.
+ * 
+ * @author insuk.cho
+ *
+ */
 public class Consumer implements Runnable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Consumer.class);
 
@@ -26,7 +49,7 @@ public class Consumer implements Runnable {
 
 	public void run() {
 		try {
-			while (true) {
+			while (true) { // keep watching the queue
 				consume(queue.take());
 			}
 		} catch (Exception e) {
