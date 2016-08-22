@@ -44,10 +44,10 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.9.2</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>net.sourceforge.htmlunit</groupId>
 			<artifactId>htmlunit</artifactId>
-		</dependency>
+		</dependency-->
 	</dependencies>
 
 	<build>
