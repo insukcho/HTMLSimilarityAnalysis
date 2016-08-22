@@ -28,7 +28,7 @@ public class ApiController {
 	@RequestMapping("/add/article")
 	public String produceArticle(@RequestParam("url") String url) throws InterruptedException {
 		requestQueue.put(new Article(System.currentTimeMillis(), url, System.nanoTime()));
-		return "Create and enqueu Article sucessfully!";
+		return "Create and enqueue new article, successfully!";
 	}
 
 	@RequestMapping("/request/articles")
